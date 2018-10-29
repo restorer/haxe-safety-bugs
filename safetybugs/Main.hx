@@ -36,13 +36,13 @@ class SomeClass {
     public function new() {}
 }
 
-class Bug1 {
-    public function bug() : Void {
-        // Arrays of mixed types are only allowed if the type is forced to Array<Dynamic>
-        // Bug in "safeArray"
-        ["A", 1];
-    }
-}
+// class Bug1Incorrect { // see Bug1Corrected
+//     public function bug() : Void {
+//         // Arrays of mixed types are only allowed if the type is forced to Array<Dynamic>
+//         // Bug in "safeArray"
+//         ["A", 1];
+//     }
+// }
 
 class Bug2 {
     public function bug(?v : haxe.Int32) : Void {
@@ -193,6 +193,18 @@ class Bug14 {
         if (s != null) {
             trace(s.length);
         }
+    }
+}
+
+class Bug1Corrected {
+    public function foo(a : Array<Dynamic>) : Void {
+        trace(a);
+    }
+
+    public function bug() : Void {
+        // Arrays of mixed types are only allowed if the type is forced to Array<Dynamic>
+        // Bug in "safeArray"
+        foo(["A", 1]);
     }
 }
 
