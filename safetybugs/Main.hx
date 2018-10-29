@@ -208,6 +208,29 @@ class Bug1Corrected {
     }
 }
 
+class Bug3MoreUsefulExample {
+    public function bug() : Void {
+        var s : Null<String> = ((Math.random() > 0.5) ? "AB" : null);
+        var l = [1, 2, 3, 4, 5];
+
+        if (s != null) {
+            // Safety: Cannot access "length" of a nullable value.
+            trace(l.map(function (v) { return v * s.length; }));
+        }
+    }
+}
+
+class FixOfBug9 {
+    public function bug() : Void {
+        var s : Null<String> = ((Math.random() > 0.5) ? "A" : null);
+
+        if (s != null) {
+            var h = new TypedHolder<String>(s);
+            // $type(h); // safetybugs.TypedHolder<String>
+        }
+    }
+}
+
 class Main {
     public static function main() : Void {
     }
