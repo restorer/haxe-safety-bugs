@@ -1,0 +1,7 @@
+# remove "-dce no" after upgrading Haxe
+
+-lib safety
+--macro Safety.enable('safetybugs')
+-main safetybugs.Main
+-dce no
+-js build/safetybugs.js
