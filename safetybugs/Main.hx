@@ -27,7 +27,7 @@ class TypedHolder<T> {
     public var v : T;
 
     public function new(v : T) {
-        // safeApi generates non-null check, even is T is Null<...> (for more details see Bug14)
+        // safeApi generates non-null check, even when T is Null<...> (for more details see Bug14)
         this.v = v;
     }
 }
